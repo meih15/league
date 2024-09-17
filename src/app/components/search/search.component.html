@@ -1,0 +1,18 @@
+<div id="form_container">
+    <form (submit)="searchChampion()">
+        <input type="text" id="search-input" [(ngModel)]="searchValue" name="searchInput" placeholder="Search..." /> <!-- Added 'name' attribute -->
+        <i class="fa-solid fa-magnifying-glass" (click)="searchChampion()"></i>
+    </form>
+    <button (click)="getRandomChampion()">
+      <i class="fa-solid fa-arrows-rotate"></i> Random
+    </button>
+  </div>
+  
+  <div id="help_paragraph_dive">
+    <i class="fa-solid fa-question" (mouseenter)="showHelp()" (mouseleave)="hideHelp()"></i>
+    <p id="help_paragraph" *ngIf="showHelpParagraph">
+      Utilize the search or use the random button to select a champion. Explore and become familiar with their statistics.
+    </p>
+  </div>
+  
+  

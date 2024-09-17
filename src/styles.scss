@@ -1,0 +1,22 @@
+@import "primeng/resources/themes/saga-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+
+// Example SCSS Variables for color
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
+  color: $secondary-color;
+  margin: 0;
+  padding: 0;
+}
+
+// Apply to PrimeNG components if needed
+:root {
+  --primary-color: $primary-color;
+  --secondary-color: $secondary-color;
+}

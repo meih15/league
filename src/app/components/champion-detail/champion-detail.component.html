@@ -1,0 +1,97 @@
+<!-- Error Modal -->
+<div *ngIf="errorMessage" class="modal">
+  <div class="modal-content">
+    <p>{{ errorMessage }}</p>
+    <button (click)="errorMessage = ''">Close</button>
+  </div>
+</div>
+
+<div class="champion-detail" *ngIf="champion">
+  <h1>{{ champion.name }} - {{ champion.title }}</h1>
+
+  <!-- Background Image -->
+  <img id="backround_img" [src]="getSkinImageUrl(selectedSkin)" alt="Background Image" />
+
+  <!-- Description -->
+  <div class="description">
+    <p id="champ_description">{{ champion.blurb }}</p>
+  </div>
+
+  <!-- Level Selector -->
+<!-- Level Selector -->
+<div>
+  <label for="level-select">Choose Level:</label>
+  <select id="level-select" [(ngModel)]="selectedLevel" (change)="changeStatByLevel(selectedLevel)">
+    <!-- Default Option -->
+    <option value="1" disabled selected>Select a level</option>
+    
+    <!-- Dynamic Options for Levels 1 to 18 -->
+    <option *ngFor="let level of levels" [value]="level">
+      Level {{ level }}
+    </option>
+  </select>
+</div>
+
+
+  <!-- Stats Section -->
+  <div class="canvas_container">
+    <app-stats [champion]="champion"></app-stats> <!-- Chart already included -->
+    <table class="table">
+      <tr>
+        <th>Champion Stats</th>
+      </tr>
+      <tr>
+        <td>Health : {{ modifiedStats.hp }}</td>
+        <td>Mana : {{ modifiedStats.mp }}</td>
+      </tr>
+      <tr>
+        <td>Health Regen : {{ modifiedStats.hpregen }}</td>
+        <td>Mana Regen : {{ modifiedStats.mpregen }}</td>
+      </tr>
+      <tr>
+        <td>Armor : {{ modifiedStats.armor }}</td>
+        <td>Attack Damage : {{ modifiedStats.attackdamage }}</td>
+      </tr>
+      <tr>
+        <td>Magic Resist : {{ modifiedStats.spellblock }}</td>
+        <td>Crit : {{ modifiedStats.crit }}</td>
+      </tr>
+      <tr>
+        <td>Move Speed : {{ modifiedStats.movespeed }}</td>
+        <td>Attack Range : {{ modifiedStats.attackrange }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Ability Buttons -->
+  <div>
+    <button (click)="showAbility('passive')">Passive</button>
+    <button (click)="showAbility('Q', 0)">Q Ability</button>
+    <button (click)="showAbility('W', 1)">W Ability</button>
+    <button (click)="showAbility('E', 2)">E Ability</button>
+    <button (click)="showAbility('R', 3)">R Ability</button>
+  </div>
+
+  <!-- Video and ability descriptions -->
+  <video #videoSource id="ability_video" controls autoplay loop> <!-- Added autoplay and loop attributes -->
+    <source #source id="source" type="video/webm" />
+    Your browser does not support the video tag.
+  </video>
+
+
+  <div #abilityDescription class="ability_description"></div>
+  <div #abilityName class="ability_name"></div>
+
+  <!-- Skins Section -->
+  <div class="skin-container-div">
+    <h2>Skins</h2>
+    <div id="skin_container">
+      <img [src]="getSkinImageUrl(selectedSkin)" alt="Skin Image" id="champ_skin">
+      <div id="button_skin_container">
+        <button *ngFor="let skin of champion.skins" (click)="changeSkin(skin.id)">
+          {{ skin.name }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

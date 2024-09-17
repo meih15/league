@@ -1,0 +1,7 @@
+<div class="champion-grid">
+  <p-card *ngFor="let champion of champions" header="{{ champion.name }}" subheader="{{ champion.title }}">
+    <img [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="{{ champion.name }}">
+    <p>{{ champion.blurb }}</p>
+    <button [routerLink]="['/champion', champion.id]">View Details</button> <!-- Navigate to detail page -->
+  </p-card>
+</div>
