@@ -18,5 +18,36 @@
   p {
     font-size: 14px;
     color: #666;
+    height: 12em; 
+    line-height: 1.5em;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
   }
-  
+
+
+p-card:hover {
+  border-color: #ffa726;
+  transform: scale(1.05);
+}
+
+button {
+  padding: 10px;
+  background-color: #643ad7;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: auto; 
+  text-align: center;
+}
+
+button:hover {
+  background-color: #ffa726;
+}
+
+button:focus {
+  outline: none;
+  background-color: #ffa726;
+  box-shadow: 0 0 0 3px rgba(255, 167, 38, 0.5);
+}

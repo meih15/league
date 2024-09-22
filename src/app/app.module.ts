@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChampionListComponent } from './components/champion-list/champion-list.component';
 import { ChampionDetailComponent } from './components/champion-detail/champion-detail.component';
-import { CardModule } from 'primeng/card'; // Import PrimeNG CardModule
+import { CardModule } from 'primeng/card'; 
 import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { StatsComponent } from './components/stats/stats.component';
-import { ChartModule } from 'primeng/chart';  // Import PrimeNG ChartModule
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { ChartModule } from 'primeng/chart';  
+import { FormsModule } from '@angular/forms'; 
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms'; // Import FormsModule
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, // Add HttpClientModule here
+    HttpClientModule, 
     CardModule,
     ChartModule,
     FormsModule

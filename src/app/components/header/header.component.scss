@@ -1,0 +1,37 @@
+header {
+    background-color: #141522;  /* Dark background for header */
+    color: #f5f5f5;
+    padding: 15px 20px;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav a {
+    color: #ffa726; 
+    padding: 10px;
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    color: #643ad7;  
+  }
+  
+  nav a:focus {
+    outline: 2px solid #643ad7; 
+  }
+  
+  nav button {
+    background-color: #0e0f1a;
+    border: 2px solid #643ad7;
+    color: #fff;
+  }
+  
+  nav button:hover {
+    background-color: #643ad7;
+    border-color: #ffa726;
+  }
+  

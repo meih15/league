@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ChampionService } from '../../services/champion.service';
 
 @Component({
@@ -10,24 +10,25 @@ import { ChampionService } from '../../services/champion.service';
 export class ChampionDetailComponent implements OnInit {
   champion: any;
   champKey: string = '';
-  selectedSkin: string = '';
-  modifiedStats: any = {}; // Store modified stats for change by level
-  selectedLevel: number = 1; // Default level
-  levels: number[] = []; // Array to store levels 1-18
-  showErrorModal: boolean = false; // Error modal flag
+  modifiedStats: any = {}; 
+  selectedLevel: number = 1; 
+  levels: number[] = [];
+  showErrorModal: boolean = false; 
   errorMessage: string = ''; 
+  selectedSkin: number = 0;  
 
 
   @ViewChild('abilityDescription', { static: false }) abilityDescription!: ElementRef;
   @ViewChild('abilityName', { static: false }) abilityName!: ElementRef;
   @ViewChild('videoSource', { static: false }) videoSource!: ElementRef;
   @ViewChild('source', { static: false }) source!: ElementRef;
-
+  
   constructor(
     private championService: ChampionService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router 
   ) {}
-
+  
   ngOnInit(): void {
     const championId = this.route.snapshot.paramMap.get('id') || '';
 
@@ -38,7 +39,6 @@ export class ChampionDetailComponent implements OnInit {
           throw new Error('Champion does not exist');
         }
         this.champKey = this.champion.key.padStart(4, '0');
-        this.selectedSkin = this.champion.skins[0].id; // Select the first skin by default
         this.modifiedStats = { ...this.champion.stats }; // Initialize stats
 
       } catch (error) {
@@ -48,13 +48,32 @@ export class ChampionDetailComponent implements OnInit {
     });
     this.levels = Array.from({ length: 18 }, (_, i) => i + 1);
 
+    this.route.params.subscribe(params => {
+      const championId = params['id'];
+      this.loadChampion(championId); 
+    });
+
   }
 
   ngAfterViewInit(): void {
     this.showAbility('passive');  // Autoplay passive video when view is initialized
   }
   
-
+  loadChampion(championId: string): void {
+    this.championService.getChampions().subscribe(data => {
+      try {
+        this.champion = data.data[championId];
+        if (!this.champion) {
+          throw new Error('Champion does not exist');
+        }
+        this.champKey = this.champion.key.padStart(4, '0');
+        this.modifiedStats = { ...this.champion.stats }; 
+      } catch (error) {
+        this.errorMessage = 'Champion does not exist, check for spelling?';
+        this.showErrorModal = true;
+      }
+    });
+  }
 
   // Close the error modal
   closeErrorModal(): void {
@@ -112,15 +131,27 @@ export class ChampionDetailComponent implements OnInit {
   checkViewChildElements();
 }
 
-  
-
-  // Generate Skin Buttons Using Angular's *ngFor
-  getSkinImageUrl(skinId: string): string {
-    return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${skinId}_0.jpg`;
+  // Method to get the ability icon URL
+  getAbilityIconUrl(abilityType: string, abilityIndex: number = -1): string {
+    if (abilityType === 'passive') {
+      return `https://ddragon.leagueoflegends.com/cdn/13.1.1/img/passive/${this.champion.passive.image.full}`;
+    } else if (abilityIndex >= 0) {
+      return `https://ddragon.leagueoflegends.com/cdn/13.1.1/img/spell/${this.champion.spells[abilityIndex].id}.png`;
+    }
+    return '';
   }
 
-  // Method for switching skins
-  changeSkin(skinId: string): void {
-    this.selectedSkin = skinId;
+  
+
+
+  // Method to generate the Skin URL based on the index of the skin button
+  getSkinImageUrl(index: number): string {
+    const championName = this.champion.id;  // Use champion's 'id' like 'Ekko'
+    return `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_${index}.jpg`;
+  }
+
+  // Method for switching skins based on index
+  changeSkin(index: number): void {
+    this.selectedSkin = index;  
   }
 }

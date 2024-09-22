@@ -3,7 +3,6 @@
 @import "primeicons/primeicons.css";
 
 
-// Example SCSS Variables for color
 $primary-color: #007bff;
 $secondary-color: #6c757d;
 
@@ -15,7 +14,6 @@ body {
   padding: 0;
 }
 
-// Apply to PrimeNG components if needed
 :root {
   --primary-color: $primary-color;
   --secondary-color: $secondary-color;

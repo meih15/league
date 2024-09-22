@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; // Import Router
+import { Router } from '@angular/router'; 
 import { ChampionService } from '../../services/champion.service';
 
 @Component({
@@ -12,16 +12,16 @@ export class SearchComponent {
   champions: any[] = [];
   showHelpParagraph: boolean = false;
 
-  constructor(private championService: ChampionService, private router: Router) { // Inject Router
+  constructor(private championService: ChampionService, private router: Router) { 
     this.championService.getChampions().subscribe(data => {
-      this.champions = Object.values(data.data); // Get all champions
+      this.champions = Object.values(data.data); 
     });
   }
 
   // Function to handle search input
   searchChampion(): void {
     if (this.searchValue.toLowerCase() === 'wukong') {
-      this.searchValue = 'MonkeyKing';  // Adjust champion name
+      this.searchValue = 'MonkeyKing';  
     }
     
     const foundChampion = this.champions.find(champ => champ.name.toLowerCase() === this.searchValue.toLowerCase());

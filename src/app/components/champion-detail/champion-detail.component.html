@@ -6,21 +6,32 @@
   </div>
 </div>
 
+<div class="main_img_container">
+  <img class="main_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash Image" />
+</div>
+
 <div class="champion-detail" *ngIf="champion">
-  <h1>{{ champion.name }} - {{ champion.title }}</h1>
+  <p class="title">{{ champion.title }}</p>
+  <h1 class="name" >{{ champion.name }} </h1>
 
   <!-- Background Image -->
-  <img id="backround_img" [src]="getSkinImageUrl(selectedSkin)" alt="Background Image" />
+   <div >
+  <img class="background_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash Image" />
+  </div>
+
 
   <!-- Description -->
   <div class="description">
     <p id="champ_description">{{ champion.blurb }}</p>
   </div>
 
-  <!-- Level Selector -->
-<!-- Level Selector -->
+
+  <!-- Stats Section -->
+  <div class="canvas_container">
+    <app-stats [champion]="champion"></app-stats> 
+    <!-- Level Selector -->
 <div>
-  <label for="level-select">Choose Level:</label>
+  <label for="level-select">Choose Level: </label>
   <select id="level-select" [(ngModel)]="selectedLevel" (change)="changeStatByLevel(selectedLevel)">
     <!-- Default Option -->
     <option value="1" disabled selected>Select a level</option>
@@ -31,11 +42,6 @@
     </option>
   </select>
 </div>
-
-
-  <!-- Stats Section -->
-  <div class="canvas_container">
-    <app-stats [champion]="champion"></app-stats> <!-- Chart already included -->
     <table class="table">
       <tr>
         <th>Champion Stats</th>
@@ -63,35 +69,79 @@
     </table>
   </div>
 
-  <!-- Ability Buttons -->
-  <div>
-    <button (click)="showAbility('passive')">Passive</button>
-    <button (click)="showAbility('Q', 0)">Q Ability</button>
-    <button (click)="showAbility('W', 1)">W Ability</button>
-    <button (click)="showAbility('E', 2)">E Ability</button>
-    <button (click)="showAbility('R', 3)">R Ability</button>
-  </div>
 
-  <!-- Video and ability descriptions -->
-  <video #videoSource id="ability_video" controls autoplay loop> <!-- Added autoplay and loop attributes -->
-    <source #source id="source" type="video/webm" />
-    Your browser does not support the video tag.
-  </video>
-
-
-  <div #abilityDescription class="ability_description"></div>
-  <div #abilityName class="ability_name"></div>
-
-  <!-- Skins Section -->
-  <div class="skin-container-div">
-    <h2>Skins</h2>
-    <div id="skin_container">
-      <img [src]="getSkinImageUrl(selectedSkin)" alt="Skin Image" id="champ_skin">
-      <div id="button_skin_container">
-        <button *ngFor="let skin of champion.skins" (click)="changeSkin(skin.id)">
-          {{ skin.name }}
-        </button>
+  <div class="ability_container">
+    <div class="all_circle_container">
+      <div class="circle-button-container">
+        <img class="passive_icon" id="passive" 
+             [src]="getAbilityIconUrl('passive')" 
+             (click)="showAbility('passive')" 
+             alt="Passive Icon" />
+             <!-- <p>Passive</p> -->
+      </div>
+  
+      <div class="circle-button-container">
+        <img class="Q_icon" id="abilityQ" 
+             [src]="getAbilityIconUrl('Q', 0)" 
+             (click)="showAbility('Q', 0)" 
+             alt="Q Icon" />
+             <!-- <p>Q</p> -->
+      </div>
+  
+      <div class="circle-button-container">
+        <img class="W_icon" id="abilityW" 
+             [src]="getAbilityIconUrl('W', 1)" 
+             (click)="showAbility('W', 1)" 
+             alt="W Icon" />
+             <!-- <p>W</p> -->
+      </div>
+  
+      <div class="circle-button-container">
+        <img class="E_icon" id="abilityE" 
+             [src]="getAbilityIconUrl('E', 2)" 
+             (click)="showAbility('E', 2)" 
+             alt="E Icon" />
+             <!-- <p>E</p> -->
+      </div>
+  
+      <div class="circle-button-container">
+        <img class="R_icon" id="abilityR" 
+             [src]="getAbilityIconUrl('R', 3)" 
+             (click)="showAbility('R', 3)" 
+             alt="R Icon" />
+             <!-- <p>R</p> -->
       </div>
     </div>
   </div>
+  
+
+  <!-- Video and ability descriptions -->
+   <div class="ability-video-container">
+  <video #videoSource id="ability_video" controls autoplay loop> 
+    <source #source id="source" type="video/webm" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<div class="ability-description-container">
+  <p #abilityName class="ability_name"></p>
+  <div #abilityDescription class="ability_description"></div>
+</div>
+
+<!-- Skins Section -->
+<div class="skin-container-div" *ngIf="champion.skins && champion.skins.length > 0">
+  <h2>Skins</h2>
+  <div id="skin_container">
+    <!-- Bind the skin image to the selectedSkin -->
+    <img [src]="getSkinImageUrl(selectedSkin)" alt="Skin Image" id="champ_skin">
+    <div id="button_skin_container">
+      <!-- Pass index i to changeSkin() -->
+       <div class="button-container-skin">
+        <button *ngFor="let skin of champion.skins; let i = index" (click)="changeSkin(i)">
+          {{ skin.name }}
+        </button>
+       </div>
+    </div>
+  </div>
+</div>
+
 </div>

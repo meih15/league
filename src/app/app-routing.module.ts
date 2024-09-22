@@ -7,7 +7,7 @@ import { SearchComponent } from './components/search/search.component';
 const routes: Routes = [
   { path: '', component: ChampionListComponent }, // Home page
   { path: 'champion/:id', component: ChampionDetailComponent }, // Champion details
-  { path: 'search', component: SearchComponent }, // Search page
+  // { path: 'search', component: SearchComponent }, // Search page
 ];
 
 @NgModule({
