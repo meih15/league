@@ -22,5 +22,12 @@
       Utilize the search or use the random button to select a champion. Explore and become familiar with their statistics.
     </p>
   </div>
+
+  <div *ngIf="showErrorModal" class="modal">
+    <div class="modal-content">
+      <p>{{ errorMessage }}</p>
+      <button (click)="closeErrorModal()">Close</button>
+    </div>
+  </div>
 </div>
 

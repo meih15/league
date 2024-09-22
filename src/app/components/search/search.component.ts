@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
 import { ChampionService } from '../../services/champion.service';
 
 @Component({
@@ -11,33 +11,37 @@ export class SearchComponent {
   searchValue: string = '';
   champions: any[] = [];
   showHelpParagraph: boolean = false;
+  showErrorModal: boolean = false;  
+  errorMessage: string = '';  
 
-  constructor(private championService: ChampionService, private router: Router) { 
+  constructor(private championService: ChampionService, private router: Router) {
     this.championService.getChampions().subscribe(data => {
-      this.champions = Object.values(data.data); 
+      this.champions = Object.values(data.data);
     });
   }
 
-  // Function to handle search input
   searchChampion(): void {
     if (this.searchValue.toLowerCase() === 'wukong') {
       this.searchValue = 'MonkeyKing';  
     }
-    
+
     const foundChampion = this.champions.find(champ => champ.name.toLowerCase() === this.searchValue.toLowerCase());
     if (foundChampion) {
-      // Navigate to the champion detail page
       this.router.navigate(['/champion', foundChampion.id]);
     } else {
-      console.log('Champion not found');
+      this.errorMessage = 'Champion not found. Please try again.';  
+      this.showErrorModal = true;  
     }
   }
 
-  // Function to pick a random champion and navigate to its detail page
+  // Close the error modal
+  closeErrorModal(): void {
+    this.showErrorModal = false;
+  }
+
   getRandomChampion(): void {
     const randomIndex = Math.floor(Math.random() * this.champions.length);
     const randomChampion = this.champions[randomIndex];
-    // Navigate to the champion detail page
     this.router.navigate(['/champion', randomChampion.id]);
   }
 
