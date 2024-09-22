@@ -1,7 +1,16 @@
-<div class="champion-grid">
-  <p-card *ngFor="let champion of champions" header="{{ champion.name }}" subheader="{{ champion.title }}">
-    <img [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="{{ champion.name }}">
-    <p>{{ champion.blurb }}</p>
-    <button [routerLink]="['/champion', champion.id]">View Details</button> 
-  </p-card>
+<div class="champion-list-wrapper">
+  <div class="champion-grid">
+    <p-card *ngFor="let champion of paginatedChampions" header="{{ champion.name }}" subheader="{{ champion.title }}">
+      <img [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="{{ champion.name }}">
+      <p>{{ champion.blurb }}</p>
+      <button [routerLink]="['/champion', champion.id]">View Details</button>
+    </p-card>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination">
+    <button *ngFor="let page of getTotalPages()" (click)="changePage(page)" [class.active]="currentPage === page">{{ page }}</button>
+  </div>
 </div>
+
+

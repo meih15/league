@@ -57,6 +57,10 @@ input[type="text"]:focus {
   border: none;
 }
 
+.league-logo:hover {
+  cursor: pointer;
+}
+
 .league-logo img {
   width: 3rem; 
   height: auto;

@@ -6,9 +6,10 @@
   </div>
 </div>
 
-<div class="main_img_container">
+<div class="main_img_container" *ngIf="champion && champion.id">
   <img class="main_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash Image" />
 </div>
+
 
 <div class="champion-detail" *ngIf="champion">
   <p class="title">{{ champion.title }}</p>
@@ -30,18 +31,14 @@
   <div class="canvas_container">
     <app-stats [champion]="champion"></app-stats> 
     <!-- Level Selector -->
-<div>
-  <label for="level-select">Choose Level: </label>
-  <select id="level-select" [(ngModel)]="selectedLevel" (change)="changeStatByLevel(selectedLevel)">
-    <!-- Default Option -->
-    <option value="1" disabled selected>Select a level</option>
+    <div class="level-select-container">
+      <label for="level-select">Choose Level:</label>
+      <select id="level-select" [(ngModel)]="selectedLevel" (change)="changeStatByLevel(selectedLevel)">
+        <option value="1" disabled selected>Select a level</option>
+        <option *ngFor="let level of levels" [value]="level">Level {{ level }}</option>
+      </select>
+    </div>
     
-    <!-- Dynamic Options for Levels 1 to 18 -->
-    <option *ngFor="let level of levels" [value]="level">
-      Level {{ level }}
-    </option>
-  </select>
-</div>
     <table class="table">
       <tr>
         <th>Champion Stats</th>

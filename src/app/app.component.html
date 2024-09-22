@@ -3,10 +3,13 @@
   <app-search></app-search> 
 </div>
 
-<div class="banner-card">
-  <img id="main_img" src="" alt="" />
-  <p id="title_nick"></p>
-  <p id="title_champ"></p>
-</div>
 
 <router-outlet></router-outlet>
+<button 
+  id="backToTopBtn" 
+  class="back-to-top" 
+  (click)="scrollToTop()"
+  *ngIf="showBackToTop">
+  ↑ Back to Top
+</button>
+
