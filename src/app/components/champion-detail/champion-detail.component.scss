@@ -11,6 +11,13 @@
   
 }
 
+.description {
+  max-height: none; /* Allow the container to expand */
+  overflow: visible; /* Show the full content */
+  white-space: normal; 
+  text-overflow: clip; 
+}
+
 #champ_description {
   max-width: 50%;
   margin-left: 25%;
@@ -18,6 +25,7 @@
   white-space: normal;
   overflow: visible;
   display: block;
+  max-height: fit-content;
 }
 
 @media (max-width: 720px) {

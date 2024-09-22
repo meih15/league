@@ -39,11 +39,11 @@ export class ChampionDetailComponent implements OnInit {
           throw new Error('Champion does not exist');
         }
         this.champKey = this.champion.key.padStart(4, '0');
-        this.modifiedStats = { ...this.champion.stats }; // Initialize stats
+        this.modifiedStats = { ...this.champion.stats }; 
 
       } catch (error) {
         this.errorMessage = 'Champion does not exist, check for spelling?';
-        this.showErrorModal = true; // Show modal on error
+        this.showErrorModal = true; 
       }
     });
     this.levels = Array.from({ length: 18 }, (_, i) => i + 1);
@@ -56,7 +56,7 @@ export class ChampionDetailComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.showAbility('passive');  // Autoplay passive video when view is initialized
+    this.showAbility('passive'); 
   }
   
   loadChampion(championId: string): void {
