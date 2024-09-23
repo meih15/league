@@ -11,21 +11,11 @@
   
 }
 
-.description {
-  max-height: none; /* Allow the container to expand */
-  overflow: visible; /* Show the full content */
-  white-space: normal; 
-  text-overflow: clip; 
-}
 
 #champ_description {
   max-width: 50%;
   margin-left: 25%;
   margin-bottom: 20%;
-  white-space: normal;
-  overflow: visible;
-  display: block;
-  max-height: fit-content;
 }
 
 @media (max-width: 720px) {
@@ -251,8 +241,6 @@ button:hover {
 }
 
 #ability_video {
-  // position: relative;
-  // transform: scale(0.6);
   display: flex;
   flex-wrap: wrap;
   width: 50vw;
@@ -341,15 +329,6 @@ button:hover {
     }
   }
 
-  /* Custom arrow for dropdown */
-  select::after {
-    content: '\25BC'; /* Unicode arrow character */
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
 }
 
 
