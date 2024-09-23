@@ -93,17 +93,19 @@ export class ChampionDetailComponent implements OnInit {
 
   // Apply level-based stat increments
   addStats(dupObj: any, value: number): any {
-    dupObj.hp += dupObj.hpperlevel * value;
-    dupObj.mp += dupObj.mpperlevel * value;
-    dupObj.armor += dupObj.armorperlevel * value;
-    dupObj.spellblock += dupObj.spellblockperlevel * value;
-    dupObj.mpregen += dupObj.mpregenperlevel * value;
-    dupObj.hpregen += dupObj.hpregenperlevel * value;
-    dupObj.attackdamage += dupObj.attackdamageperlevel * value;
-    dupObj.attackspeed =
-      dupObj.attackspeed * (1 + (dupObj.attackspeedperlevel * value) / 100);
+    dupObj.hp = Math.round(dupObj.hp + dupObj.hpperlevel * value);
+    dupObj.mp = Math.round(dupObj.mp + dupObj.mpperlevel * value);
+    dupObj.armor = Math.round(dupObj.armor + dupObj.armorperlevel * value);
+    dupObj.spellblock = Math.round(dupObj.spellblock + dupObj.spellblockperlevel * value);
+    dupObj.mpregen = Math.round(dupObj.mpregen + dupObj.mpregenperlevel * value);
+    dupObj.hpregen = Math.round(dupObj.hpregen + dupObj.hpregenperlevel * value);
+    dupObj.attackdamage = Math.round(dupObj.attackdamage + dupObj.attackdamageperlevel * value);
+    dupObj.attackspeed = Math.round(
+      dupObj.attackspeed * (1 + (dupObj.attackspeedperlevel * value) / 100)
+    );
     return dupObj;
   }
+
 
   // Methods for abilities (passive, Q, W, E, R)
   showAbility(abilityType: string, abilityIndex: number = -1): void {
