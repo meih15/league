@@ -67,13 +67,17 @@ export class ChampionDetailComponent implements OnInit {
           throw new Error('Champion does not exist');
         }
         this.champKey = this.champion.key.padStart(4, '0');
-        this.modifiedStats = { ...this.champion.stats }; 
+        this.modifiedStats = { ...this.champion.stats };
+        
+        
+        this.showAbility('passive'); 
       } catch (error) {
         this.errorMessage = 'Champion does not exist, check for spelling?';
         this.showErrorModal = true;
       }
     });
   }
+  
 
   // Close the error modal
   closeErrorModal(): void {
