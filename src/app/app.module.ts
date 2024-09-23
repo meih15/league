@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ChampionListComponent } from './components/champion-list/champion-list.component';
 import { ChampionDetailComponent } from './components/champion-detail/champion-detail.component';
 import { CardModule } from 'primeng/card'; 
-import { HeaderComponent } from './components/header/header.component';
 import { SearchComponent } from './components/search/search.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ChartModule } from 'primeng/chart';  
@@ -18,7 +17,6 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     ChampionListComponent,
     ChampionDetailComponent,
-    HeaderComponent,
     SearchComponent,
     StatsComponent,
   ],
