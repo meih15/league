@@ -124,18 +124,25 @@ export class ChampionDetailComponent implements OnInit {
           this.abilityName.nativeElement.innerText = this.champion.spells[abilityIndex].name;
           this.source.nativeElement.src = `https://d28xe8vt774jo5.cloudfront.net/champion-abilities/${this.champKey}/ability_${this.champKey}_${abilityType.toUpperCase()}1.webm`;
         }
-        // Ensure the video is reloaded and plays automatically
+        // Ensure the video is reloaded
         this.videoSource.nativeElement.load();
-        this.videoSource.nativeElement.play();
+        
+        // Play the video with error handling for aborts
+        this.videoSource.nativeElement.play().catch((error: DOMException) => {
+          if (error.name !== 'AbortError') {
+            console.error('Video play was interrupted for another reason:', error);
+          }
+        });
       } else {
         // Retry after a short delay if the elements are not available
         setTimeout(checkViewChildElements, 50);
       }
     };
-
-  // Start checking
-  checkViewChildElements();
-}
+  
+    // Start checking
+    checkViewChildElements();
+  }
+  
 
   // Method to get the ability icon URL
   getAbilityIconUrl(abilityType: string, abilityIndex: number = -1): string {
