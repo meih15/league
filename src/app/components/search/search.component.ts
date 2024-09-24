@@ -21,10 +21,6 @@ export class SearchComponent {
   }
 
   searchChampion(): void {
-    if (this.searchValue.toLowerCase() === 'wukong') {
-      this.searchValue = 'MonkeyKing';  
-    }
-
     const foundChampion = this.champions.find(champ => champ.name.toLowerCase() === this.searchValue.toLowerCase());
     if (foundChampion) {
       this.router.navigate(['/champion', foundChampion.id]);
