@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChampionService } from '../../services/champion.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,7 @@ export class SearchComponent {
   showErrorModal: boolean = false;  
   errorMessage: string = '';  
 
-  constructor(private championService: ChampionService, private router: Router) {
+  constructor(private championService: ChampionService, private router: Router, public authService: AuthService) {
     this.championService.getChampions().subscribe(data => {
       this.champions = Object.values(data.data);
     });
@@ -47,5 +48,11 @@ export class SearchComponent {
 
   hideHelp(): void {
     this.showHelpParagraph = false;
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe(() => {
+      this.authService.logoutUser();
+    });
   }
 }

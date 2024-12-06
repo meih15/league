@@ -10,6 +10,8 @@ import { SearchComponent } from './components/search/search.component';
 import { StatsComponent } from './components/stats/stats.component';
 import { ChartModule } from 'primeng/chart';  
 import { FormsModule } from '@angular/forms'; 
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { FormsModule } from '@angular/forms';
     ChampionDetailComponent,
     SearchComponent,
     StatsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
