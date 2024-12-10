@@ -11,10 +11,20 @@
 </div>
 
 
+
+
+
 <div class="champion-detail" *ngIf="champion">
   <p class="title">{{ champion.title }}</p>
   <h1 class="name" >{{ champion.name }} </h1>
-
+  
+  <div class="favorites-button-container">
+    <button *ngIf="authService.isLoggedIn()" (click)="toggleFavorite()"
+    [ngClass]="{ 'remove-favorite': isFavorite, 'add-favorite': !isFavorite }"
+    >
+      {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
+    </button>
+  </div>
   <!-- Background Image -->
    <div >
   <img class="background_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash Image" />

@@ -54,5 +54,8 @@ export class SearchComponent {
     this.authService.logout().subscribe(() => {
       this.authService.logoutUser();
     });
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 1000);
   }
 }

@@ -12,7 +12,10 @@ import { ChartModule } from 'primeng/chart';
 import { FormsModule } from '@angular/forms'; 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-
+import { AuthService } from './services/auth.service';
+import { FavoritesService } from './services/favorites.service';
+import { CommonModule } from '@angular/common';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { RegisterComponent } from './components/register/register.component';
     SearchComponent,
     StatsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +34,13 @@ import { RegisterComponent } from './components/register/register.component';
     HttpClientModule, 
     CardModule,
     ChartModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    FavoritesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

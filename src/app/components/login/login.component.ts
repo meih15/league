@@ -4,28 +4,31 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
   message: string = '';
+  messageType: 'success' | 'error' = 'error';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
-      next: (response) => {
-        this.authService.saveToken(response.access_token);
+      next: () => {
         this.message = 'Login successful!';
+        this.messageType = 'success';
         setTimeout(() => {
-          this.router.navigate(['/']); // Redirect to home page
+          this.router.navigate(['/']); 
         }, 1000);
       },
-      error: (error) => {
+      error: (error: any) => {
         this.message = 'Login failed. Please check your credentials.';
+        this.messageType = 'error';
+        console.error('Login error:', error);
       }
     });
   }
 }
-

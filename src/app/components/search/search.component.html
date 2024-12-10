@@ -15,11 +15,25 @@
       <i class="fa-solid fa-arrows-rotate"></i> Random
     </button>
   </div>
-  
+
+  <!-- Favorites Button -->
+  <button *ngIf="authService.isLoggedIn()" routerLink="/favorites" class="favorites-button">
+    <i class="fa-solid fa-heart"></i> Favorites
+  </button>
+
+  <!-- Login/Logout Buttons -->
   <div>
-    <button *ngIf="authService.isLoggedIn(); else loginButton" (click)="logout()">Logout</button>
+    <button
+      *ngIf="authService.isLoggedIn(); else loginButton"
+      (click)="logout()"
+      class="auth-button"
+    >
+      Logout
+    </button>
     <ng-template #loginButton>
-      <button routerLink="/login">Login</button>
+      <button routerLink="/login" class="auth-button">
+        Login
+      </button>
     </ng-template>
   </div>
   

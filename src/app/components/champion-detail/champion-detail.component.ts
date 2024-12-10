@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChampionService } from '../../services/champion.service';
-
+import { AuthService } from '../../services/auth.service';
+import { FavoritesService } from '../../services/favorites.service';
+ 
 @Component({
   selector: 'app-champion-detail',
   templateUrl: './champion-detail.component.html',
@@ -16,6 +18,10 @@ export class ChampionDetailComponent implements OnInit {
   showErrorModal: boolean = false; 
   errorMessage: string = ''; 
   selectedSkin: number = 0;  
+  championId: string = '';
+  isFavorite: boolean = false; 
+
+  private storageKey = 'userFavorites';
 
 
   @ViewChild('abilityDescription', { static: false }) abilityDescription!: ElementRef;
@@ -25,16 +31,18 @@ export class ChampionDetailComponent implements OnInit {
   
   constructor(
     private championService: ChampionService,
+    private favoritesService: FavoritesService,
     private route: ActivatedRoute,
-    private router: Router 
+    private router: Router ,
+    protected authService: AuthService,
   ) {}
   
   ngOnInit(): void {
-    const championId = this.route.snapshot.paramMap.get('id') || '';
+    this.championId = this.route.snapshot.paramMap.get('id') || '';
 
     this.championService.getChampions().subscribe(data => {
       try {
-        this.champion = data.data[championId];
+        this.champion = data.data[this.championId];
         if (!this.champion) {
           throw new Error('Champion does not exist');
         }
@@ -50,9 +58,10 @@ export class ChampionDetailComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       const championId = params['id'];
-      this.loadChampion(championId); 
+      this.loadChampion(this.championId); 
     });
 
+    this.checkFavoriteStatus()
   }
 
   ngAfterViewInit(): void {
@@ -77,6 +86,52 @@ export class ChampionDetailComponent implements OnInit {
       }
     });
   }
+  
+  checkFavoriteStatus(): void {
+    if (!this.authService.isLoggedIn()) return;
+  
+    this.favoritesService.getFavorites().subscribe({
+      next: (favorites: any[]) => {
+        this.isFavorite = favorites.some((fav) => fav.championId === this.championId);
+        console.log('Favorites fetched successfully:', favorites);
+      },
+      error: (err) => {
+        console.error('Error fetching favorites:', err);
+      }
+    });
+  }
+  
+
+  toggleFavorite(): void {
+    const token = this.authService.getToken();
+    if (!token) {
+      console.error('No token available. User is not logged in.');
+      return;
+    }
+  
+    if (this.isFavorite) {
+      this.favoritesService.removeFavorite(this.championId).subscribe({
+        next: () => {
+          this.isFavorite = false;
+          console.log('Champion removed from favorites.');
+        },
+        error: (err) => {
+          console.error('Error removing favorite:', err);
+        }
+      });
+    } else {
+      this.favoritesService.addFavorite(this.championId).subscribe({
+        next: () => {
+          this.isFavorite = true;
+          console.log('Champion added to favorites.');
+        },
+        error: (err) => {
+          console.error('Error adding favorite:', err);
+        }
+      });
+    }
+  }
+  
   
 
   // Close the error modal

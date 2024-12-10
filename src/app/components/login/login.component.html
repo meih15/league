@@ -1,14 +1,36 @@
-<h2>Login</h2>
+<div class="login-wrapper">
+<h2 class="login-text">Login</h2>
 <form (ngSubmit)="login()">
   <label for="email">Email:</label>
-  <input type="email" [(ngModel)]="email" name="email" required />
+  <input
+    type="email"
+    id="email"
+    [(ngModel)]="email"
+    name="email"
+    autocomplete="email"
+    required
+  />
 
   <label for="password">Password:</label>
-  <input type="password" [(ngModel)]="password" name="password" required />
+  <input
+    type="password"
+    id="password"
+    [(ngModel)]="password"
+    name="password"
+    autocomplete="current-password"
+    required
+  />
 
   <button type="submit">Login</button>
 </form>
-<p>{{ message }}</p>
+
+<p 
+  [ngClass]="{ 'success-message': messageType === 'success', 'error-message': messageType === 'error' }"
+  aria-live="polite">{{ message }}
+</p>
+
 <p class="register-link">
-    New to LeagueOfLegends? <a routerLink="/register">Create your account here.</a>
-  </p>
+  New to LeagueOfLegends?
+  <a routerLink="/register">Create your account here.</a>
+</p>
+</div>
