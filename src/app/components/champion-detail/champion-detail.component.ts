@@ -56,6 +56,7 @@ export class ChampionDetailComponent implements OnInit {
     this.levels = Array.from({ length: 18 }, (_, i) => i + 1);
 
     this.route.params.subscribe(params => {
+      this.championId = params['id'];
       this.loadChampion(this.championId); 
     });
 

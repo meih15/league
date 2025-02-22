@@ -23,7 +23,7 @@ export class AppComponent {
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
-    const yOffset = window.pageYOffset || document.documentElement.scrollTop;
+    const yOffset = window.scrollY || document.documentElement.scrollTop;
     this.showBackToTop = yOffset > 200;
   }
 

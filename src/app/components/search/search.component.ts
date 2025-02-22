@@ -37,10 +37,15 @@ export class SearchComponent {
   }
 
   getRandomChampion(): void {
-    const randomIndex = Math.floor(Math.random() * this.champions.length);
+    const crypto = window.crypto || (window as any).msCrypto; 
+    const array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+
+    const randomIndex = array[0] % this.champions.length; 
     const randomChampion = this.champions[randomIndex];
     this.router.navigate(['/champion', randomChampion.id]);
   }
+
 
   showHelp(): void {
     this.showHelpParagraph = true;
