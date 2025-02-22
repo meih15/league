@@ -16,10 +16,13 @@ describe('SearchComponent', () => {
   let fixture: ComponentFixture<SearchComponent>;
   let mockChampionService: any;
   let mockRouter: any;
+  let mockAuthService: any;
 
 
   beforeEach(async () => {
     // Mock ChampionService
+    mockAuthService = jasmine.createSpyObj(['login', 'logout', 'isAuthenticated']);
+    mockAuthService.isAuthenticated.and.returnValue(of(true));
     mockChampionService = jasmine.createSpyObj(['getChampions']);
     mockChampionService.getChampions.and.returnValue(
       of({
