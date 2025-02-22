@@ -12,7 +12,7 @@ export class ChampionListComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 15;  
 
-  constructor(private championService: ChampionService) { }
+  constructor(private readonly championService: ChampionService) { }
 
   ngOnInit(): void {
     this.championService.getChampions().subscribe(data => {

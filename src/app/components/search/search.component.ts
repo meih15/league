@@ -15,7 +15,7 @@ export class SearchComponent {
   showErrorModal: boolean = false;  
   errorMessage: string = '';  
 
-  constructor(private championService: ChampionService, private router: Router, public authService: AuthService) {
+  constructor(private readonly championService: ChampionService, private readonly router: Router, public authService: AuthService) {
     this.championService.getChampions().subscribe(data => {
       this.champions = Object.values(data.data);
     });

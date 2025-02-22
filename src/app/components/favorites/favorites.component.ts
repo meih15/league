@@ -13,9 +13,9 @@ export class FavoritesComponent implements OnInit {
   allChampions: any = {}; 
 
   constructor(
-    private favoritesService: FavoritesService,
-    private authService: AuthService,
-    private championService: ChampionService
+    private readonly favoritesService: FavoritesService,
+    private readonly authService: AuthService,
+    private readonly championService: ChampionService
   ) {}
 
   ngOnInit(): void {

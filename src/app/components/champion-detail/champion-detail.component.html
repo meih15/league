@@ -7,7 +7,7 @@
 </div>
 
 <div class="main_img_container" *ngIf="champion && champion.id">
-  <img class="main_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash Image" />
+  <img class="main_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash" />
 </div>
 
 
@@ -27,7 +27,7 @@
   </div>
   <!-- Background Image -->
    <div >
-  <img class="background_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash Image" />
+  <img class="background_img" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion.id + '_0.jpg'" alt="Champion Splash" />
   </div>
 
 
@@ -84,7 +84,6 @@
              [src]="getAbilityIconUrl('passive')" 
              (click)="showAbility('passive')" 
              alt="Passive Icon" />
-             <!-- <p>Passive</p> -->
       </div>
   
       <div class="circle-button-container">
@@ -92,7 +91,6 @@
              [src]="getAbilityIconUrl('Q', 0)" 
              (click)="showAbility('Q', 0)" 
              alt="Q Icon" />
-             <!-- <p>Q</p> -->
       </div>
   
       <div class="circle-button-container">
@@ -100,7 +98,6 @@
              [src]="getAbilityIconUrl('W', 1)" 
              (click)="showAbility('W', 1)" 
              alt="W Icon" />
-             <!-- <p>W</p> -->
       </div>
   
       <div class="circle-button-container">
@@ -108,7 +105,6 @@
              [src]="getAbilityIconUrl('E', 2)" 
              (click)="showAbility('E', 2)" 
              alt="E Icon" />
-             <!-- <p>E</p> -->
       </div>
   
       <div class="circle-button-container">
@@ -116,7 +112,6 @@
              [src]="getAbilityIconUrl('R', 3)" 
              (click)="showAbility('R', 3)" 
              alt="R Icon" />
-             <!-- <p>R</p> -->
       </div>
     </div>
   </div>
@@ -139,7 +134,7 @@
   <h2>Skins</h2>
   <div id="skin_container">
     <!-- Bind the skin image to the selectedSkin -->
-    <img [src]="getSkinImageUrl(selectedSkin)" alt="Skin Image" id="champ_skin">
+    <img [src]="getSkinImageUrl(selectedSkin)" alt="Skin" id="champ_skin">
     <div id="button_skin_container">
       <!-- Pass index i to changeSkin() -->
        <div class="button-container-skin">

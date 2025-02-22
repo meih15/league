@@ -11,7 +11,7 @@ export class AppComponent {
   champions: any[] = []; 
   showBackToTop: boolean = false;
 
-  constructor(private championService: ChampionService) {
+  constructor(private readonly championService: ChampionService) {
     this.loadChampions();
   }
 
