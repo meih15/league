@@ -5,6 +5,9 @@ import { ChampionService } from '../../services/champion.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';  
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 
 describe('SearchComponent', () => {
@@ -33,7 +36,10 @@ describe('SearchComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      imports: [FormsModule], // Add FormsModule here
+      imports: [FormsModule,
+        HttpClientTestingModule,  
+        RouterTestingModule
+      ], 
       providers: [
         { provide: ChampionService, useValue: mockChampionService },
         { provide: Router, useValue: mockRouter },
