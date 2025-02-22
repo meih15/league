@@ -57,16 +57,6 @@
   margin-bottom: 20%;
 }
 
-@media (max-width: 720px) {
-  #champ_description {
-    max-width: 90%;
-    margin-left: 5%;
-    white-space: normal;
-    overflow: visible;
-    display: block;
-  }
-}
-
 .canvas_container {
   display: flex;
   justify-content: space-around;
@@ -202,12 +192,7 @@ button:hover {
   margin-bottom: 10px;
 }
 
-@media (max-width: 720px) {
-  .name  {
-    font-size: 12vw;
-  }
 
-}
 .title {
   margin-top: -5rem;
   text-align: center;
@@ -227,13 +212,6 @@ button:hover {
 }
 
 
-@media (max-width: 720px) {
-  .main_img {
-    max-width: 110%;
-    margin-top: -1%;
-  }
-}
-
 .main_img_container {
   display: flex;
   justify-content: center; 
@@ -243,55 +221,41 @@ button:hover {
 
 
 @media (max-width: 720px) {
+  .name {
+    font-size: 12vw;
+  }
+
+  .main_img {
+    max-width: 110%;
+    margin-top: -1%;
+    margin-top: -30rem;
+  }
+
   .table {
     display: none;
   }
-}
 
-@media (max-width: 720px) {
   .canvas_container {
     display: none;
   }
-}
 
-@media (max-width: 720px) {
   #number-select {
     display: none;
   }
-}
 
-.button-container-skin {
-  max-width: 80rem;
-}
-
-
-.ability-video-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#ability_video {
-  display: flex;
-  flex-wrap: wrap;
-  width: 50vw;
-  border: 2px solid orange;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-}
-
-@media (max-width: 720px) {
-  .main_img {
-    margin-top: -30rem;
+  #champ_description {
+    max-width: 90%;
+    margin-left: 5%;
+    white-space: normal;
+    overflow: visible;
+    display: block;
+    margin-bottom: 15rem;
   }
 
   .title{
     margin-top: -25rem;
   }
 
-  #champ_description {
-    margin-bottom: 15rem;
-  }
 
   .all_circle_container {
     justify-content: space-around;
@@ -315,6 +279,27 @@ button:hover {
     margin-left: 20vw;
   }
 }
+
+.button-container-skin {
+  max-width: 80rem;
+}
+
+
+.ability-video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#ability_video {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50vw;
+  border: 2px solid orange;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
 
 .ability-description-container {
   text-align: center;
