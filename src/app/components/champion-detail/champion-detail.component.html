@@ -80,41 +80,62 @@
   <div class="ability_container">
     <div class="all_circle_container">
       <div class="circle-button-container">
-        <img class="passive_icon" id="passive" 
-             [src]="getAbilityIconUrl('passive')" 
-             (click)="showAbility('passive')" 
-             alt="Passive Icon" />
+        <button type="button"
+                class="ability-button passive-button"
+                (click)="showAbility('passive')">
+          <img class="passive_icon" 
+               id="passive" 
+               [src]="getAbilityIconUrl('passive')" 
+               alt="Passive Icon" />
+        </button>
       </div>
   
       <div class="circle-button-container">
-        <img class="Q_icon" id="abilityQ" 
-             [src]="getAbilityIconUrl('Q', 0)" 
-             (click)="showAbility('Q', 0)" 
-             alt="Q Icon" />
+        <button type="button"
+                class="ability-button Q-button"
+                (click)="showAbility('Q', 0)">
+          <img class="Q_icon" 
+               id="abilityQ" 
+               [src]="getAbilityIconUrl('Q', 0)" 
+               alt="Q Icon" />
+        </button>
       </div>
   
       <div class="circle-button-container">
-        <img class="W_icon" id="abilityW" 
-             [src]="getAbilityIconUrl('W', 1)" 
-             (click)="showAbility('W', 1)" 
-             alt="W Icon" />
+        <button type="button"
+                class="ability-button W-button"
+                (click)="showAbility('W', 1)">
+          <img class="W_icon" 
+               id="abilityW" 
+               [src]="getAbilityIconUrl('W', 1)" 
+               alt="W Icon" />
+        </button>
       </div>
   
       <div class="circle-button-container">
-        <img class="E_icon" id="abilityE" 
-             [src]="getAbilityIconUrl('E', 2)" 
-             (click)="showAbility('E', 2)" 
-             alt="E Icon" />
+        <button type="button"
+                class="ability-button E-button"
+                (click)="showAbility('E', 2)">
+          <img class="E_icon" 
+               id="abilityE" 
+               [src]="getAbilityIconUrl('E', 2)" 
+               alt="E Icon" />
+        </button>
       </div>
   
       <div class="circle-button-container">
-        <img class="R_icon" id="abilityR" 
-             [src]="getAbilityIconUrl('R', 3)" 
-             (click)="showAbility('R', 3)" 
-             alt="R Icon" />
+        <button type="button"
+                class="ability-button R-button"
+                (click)="showAbility('R', 3)">
+          <img class="R_icon" 
+               id="abilityR" 
+               [src]="getAbilityIconUrl('R', 3)" 
+               alt="R Icon" />
+        </button>
       </div>
     </div>
   </div>
+  
   
 
   <!-- Video and ability descriptions -->
