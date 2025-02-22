@@ -7,6 +7,7 @@ import { of } from 'rxjs';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';  
 import { RouterTestingModule } from '@angular/router/testing';
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -43,6 +44,7 @@ describe('SearchComponent', () => {
       providers: [
         { provide: ChampionService, useValue: mockChampionService },
         { provide: Router, useValue: mockRouter },
+        { provide: AuthService, useValue: mockAuthService } 
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
