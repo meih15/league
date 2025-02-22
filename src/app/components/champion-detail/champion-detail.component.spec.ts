@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed} from '@angular/core/testing';
 import { ChampionDetailComponent } from './champion-detail.component';
 import { ChampionService } from '../../services/champion.service';
 import { ActivatedRoute } from '@angular/router';

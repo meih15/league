@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FavoritesLocalService {
-  private storageKey = 'userFavorites';
+  private readonly storageKey = 'userFavorites';
 
   constructor() {}
 

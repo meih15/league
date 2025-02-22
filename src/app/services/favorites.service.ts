@@ -9,9 +9,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class FavoritesService {
-  private baseUrl = 'http://localhost:5257/api/Favorites'; 
+  private readonly baseUrl = 'http://localhost:5257/api/Favorites'; 
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private readonly http: HttpClient, private readonly authService: AuthService) {}
 
   private getAuthHeaders(): HttpHeaders {
     const token = this.authService.getToken();

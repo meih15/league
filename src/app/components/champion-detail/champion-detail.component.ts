@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { ChampionService } from '../../services/champion.service';
 import { AuthService } from '../../services/auth.service';
 import { FavoritesService } from '../../services/favorites.service';
@@ -21,7 +21,7 @@ export class ChampionDetailComponent implements OnInit {
   championId: string = '';
   isFavorite: boolean = false; 
 
-  private storageKey = 'userFavorites';
+  private readonly storageKey = 'userFavorites';
 
 
   @ViewChild('abilityDescription', { static: false }) abilityDescription!: ElementRef;
@@ -30,15 +30,14 @@ export class ChampionDetailComponent implements OnInit {
   @ViewChild('source', { static: false }) source!: ElementRef;
   
   constructor(
-    private championService: ChampionService,
-    private favoritesService: FavoritesService,
-    private route: ActivatedRoute,
-    private router: Router ,
+    private readonly championService: ChampionService,
+    private readonly favoritesService: FavoritesService,
+    private readonly route: ActivatedRoute,
     protected authService: AuthService,
   ) {}
   
   ngOnInit(): void {
-    this.championId = this.route.snapshot.paramMap.get('id') || '';
+    this.championId = this.route.snapshot.paramMap.get('id') ?? '';
 
     this.championService.getChampions().subscribe(data => {
       try {
@@ -57,7 +56,6 @@ export class ChampionDetailComponent implements OnInit {
     this.levels = Array.from({ length: 18 }, (_, i) => i + 1);
 
     this.route.params.subscribe(params => {
-      const championId = params['id'];
       this.loadChampion(this.championId); 
     });
 

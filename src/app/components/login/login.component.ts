@@ -13,7 +13,7 @@ export class LoginComponent {
   message: string = '';
   messageType: 'success' | 'error' = 'error';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private readonly authService: AuthService, private readonly router: Router) {}
 
   login(): void {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
