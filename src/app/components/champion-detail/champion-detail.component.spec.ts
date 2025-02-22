@@ -3,6 +3,7 @@ import { ChampionDetailComponent } from './champion-detail.component';
 import { ChampionService } from '../../services/champion.service';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 describe('ChampionDetailComponent', () => {
@@ -30,6 +31,7 @@ describe('ChampionDetailComponent', () => {
 
 
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       declarations: [ChampionDetailComponent],
       providers: [
         { provide: ChampionService, useValue: mockChampionService },
