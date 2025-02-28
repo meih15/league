@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly baseUrl = 'http://localhost:5257/api/User'; 
+  private readonly baseUrl = 'https://leaguebackend.onrender.com/api/User'; 
 
   constructor(private readonly http: HttpClient) {}
 

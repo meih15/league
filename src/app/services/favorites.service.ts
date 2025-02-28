@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class FavoritesService {
-  private readonly baseUrl = 'http://localhost:5257/api/Favorites'; 
+  private readonly baseUrl = 'https://leaguebackend.onrender.com/api/Favorites'; 
 
   constructor(private readonly http: HttpClient, private readonly authService: AuthService) {}
 
